@@ -2,7 +2,8 @@
 [![Build Status](https://secure.travis-ci.org/constantcontact/php-sdk.png?branch=master)](http://travis-ci.org/constantcontact/php-sdk) [![Latest Stable Version](https://poser.pugx.org/constantcontact/constantcontact/v/stable.svg)](https://packagist.org/packages/constantcontact/constantcontact) [![Latest Unstable Version](https://poser.pugx.org/constantcontact/constantcontact/v/unstable.svg)](https://packagist.org/packages/constantcontact/constantcontact)
 
 ### This library utilizes [GuzzlePHP](http://guzzle.readthedocs.org/) and requires 
-```"guzzlehttp/guzzle": "^7.0",
+```
+    "guzzlehttp/guzzle": "^7.0",
 ```
 
 ## Installing via Composer (recommended)
