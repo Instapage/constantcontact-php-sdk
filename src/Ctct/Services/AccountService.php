@@ -58,7 +58,7 @@ class AccountService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_verified_addresses');
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode(array(array("email_address" => $emailAddress))));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode(array(array("email_address" => $emailAddress))));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -107,7 +107,7 @@ class AccountService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.account_info');
 
         $request = parent::createBaseRequest($accessToken, 'PUT', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($accountInfo));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($accountInfo));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));

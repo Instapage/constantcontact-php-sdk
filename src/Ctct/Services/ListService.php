@@ -56,7 +56,7 @@ class ListService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.lists');
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($list));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($list));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -79,7 +79,7 @@ class ListService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.list'), $list->id);
 
         $request = parent::createBaseRequest($accessToken, 'PUT', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($list));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($list));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));

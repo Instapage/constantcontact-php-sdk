@@ -119,7 +119,7 @@ class ContactService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.contacts');
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl, $params);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($contact));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($contact));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -167,7 +167,7 @@ class ContactService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.contact'), $contact->id);
 
         $request = parent::createBaseRequest($accessToken, 'PUT', $baseUrl, $params);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($contact));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($contact));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));

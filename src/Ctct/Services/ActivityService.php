@@ -82,7 +82,7 @@ class ActivityService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.add_contacts_activity');
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($addContacts));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($addContacts));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -136,7 +136,7 @@ class ActivityService extends BaseService
     {
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.clear_lists_activity');
         $request = parent::createBaseRequest($accessToken, "POST", $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode(array("lists" => $lists)));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode(array("lists" => $lists)));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -159,7 +159,7 @@ class ActivityService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.export_contacts_activity');
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($exportContacts));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($exportContacts));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -191,7 +191,7 @@ class ActivityService extends BaseService
             $payload['import_data'][] = array('email_addresses' => array($emailAddress));
         }
 
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($payload));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($payload));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));

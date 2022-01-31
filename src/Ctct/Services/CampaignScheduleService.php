@@ -29,7 +29,7 @@ class CampaignScheduleService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.campaign_schedules'), $campaignId);
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($schedule));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($schedule));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -102,7 +102,7 @@ class CampaignScheduleService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.campaign_schedule'), $campaignId, $schedule->id);
 
         $request = parent::createBaseRequest($accessToken, 'PUT', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($schedule));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($schedule));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -149,7 +149,7 @@ class CampaignScheduleService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.campaign_test_sends'), $campaignId);
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($testSend));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($testSend));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));

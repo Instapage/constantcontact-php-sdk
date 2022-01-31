@@ -268,20 +268,20 @@ class LibraryService extends BaseService
      * @throws CtctException
      */
     public function createLibraryFolder($accessToken, Folder $folder){
-    	$baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.library_folders');
-    	
-    	$request = parent::createBaseRequest($accessToken, "POST", $baseUrl);
-    	
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($folder));
-    	
-    	try {
+      $baseUrl = Config::get('endpoints.base_url') . Config::get('endpoints.library_folders');
+      
+      $request = parent::createBaseRequest($accessToken, "POST", $baseUrl);
+      
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($folder));
+      
+      try {
             $response = parent::getClient()->send($request->withBody($stream));
         } catch (BadResponseException $e) {
             throw parent::convertException($e);
-    	}
-    	
-    	$body = json_decode((string) $response->getBody(), true);
-    	return Folder::create($body);
+      }
+      
+      $body = json_decode((string) $response->getBody(), true);
+      return Folder::create($body);
     }
     
     /**

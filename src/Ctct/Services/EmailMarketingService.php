@@ -33,7 +33,7 @@ class EmailMarketingService extends BaseService
         }
 
         $request = parent::createBaseRequest($accessToken, 'POST', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($campaign));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($campaign));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
@@ -132,7 +132,7 @@ class EmailMarketingService extends BaseService
         $baseUrl = Config::get('endpoints.base_url') . sprintf(Config::get('endpoints.campaign'), $campaign->id);
 
         $request = parent::createBaseRequest($accessToken, 'PUT', $baseUrl);
-        $stream = \GuzzleHttp\Psr7\stream_for(json_encode($campaign));
+        $stream = \GuzzleHttp\Psr7\Utils::streamFor(json_encode($campaign));
 
         try {
             $response = parent::getClient()->send($request->withBody($stream));
