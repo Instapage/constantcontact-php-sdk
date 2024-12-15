@@ -1,5 +1,5 @@
 {
-    "name": "constantcontact/constantcontact",
+    "name": "instapage/constantcontact",
     "type": "library",
     "description": "Constant Contact PHP SDK for v2",
     "keywords": ["constantcontact", "ctct", "email marketing", "constant contact"],
